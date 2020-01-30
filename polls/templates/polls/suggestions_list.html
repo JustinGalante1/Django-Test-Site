@@ -1,1 +1,14 @@
-<h1>Suggestions List</h1>
+<h1>List of Suggestions</h1>
+{% if suggestion_list %}
+    <ul>
+        {% for suggestion in suggestion_list %}
+        <li><strong>Title: </strong>{{ suggestion.name }}</li>
+        <p class = "tab">Text: {{ suggestion.body}} </p>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No suggestions have been submitted</p>
+{% endif %}
+
+<li><a href="{% url 'polls:index' %}">Go back to the index </a><br></li>
+<li><a href="{% url 'polls:suggestions' %}">Submit another suggestion! </a><br></li>

@@ -34,11 +34,6 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
 
-# class SuggestionsView(generic.ListView):
-#     model = Suggestion
-#     template_name = 'polls/suggestions.html'
-
-
 # def index(request):
 #     latest_question_list = Question.objects.order_by('-pub_date')[:5]
 #     context = {'latest_question_list': latest_question_list}
@@ -86,10 +81,11 @@ def suggestions(request):
         except Exception as e:
             return render(request, 'polls/suggestions.html', {'error_message':
                                                                   "Suggestion couldn't be submitted: " + str(e)})
-        return HttpResponseRedirect(reverse('polls:suggestions'))
+        return HttpResponseRedirect(reverse('polls:suggestions_list'))
     else:
         return render(request, 'polls/suggestions.html')
 
 
-def suggestion_list(request):
-    return render(request, 'polls/suggestions_list.html')
+def suggestions_list(request):
+    suggestion_list_context = Suggestion.objects.all()
+    return render(request, 'polls/suggestions_list.html', {'suggestion_list': suggestion_list_context, })
