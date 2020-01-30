@@ -5,7 +5,7 @@ from django.http import Http404
 from django.views import generic
 from django.utils import timezone
 
-from .models import Choice, Question
+from .models import Choice, Question, Suggestion
 
 
 # in polls directory
@@ -32,6 +32,11 @@ class DetailView(generic.DetailView):
 class ResultsView(generic.DetailView):
     model = Question
     template_name = 'polls/results.html'
+
+
+# class SuggestionsView(generic.ListView):
+#     model = Suggestion
+#     template_name = 'polls/suggestions.html'
 
 
 # def index(request):
@@ -67,3 +72,24 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+
+def suggestions(request):
+    if request.method == 'POST':
+        try:
+            name = request.POST.get('title', 'Name')
+            description = request.POST.get('body', 'Hi')
+            new_suggestion = Suggestion()
+            new_suggestion.name = name
+            new_suggestion.body = description
+            new_suggestion.save()
+        except Exception as e:
+            return render(request, 'polls/suggestions.html', {'error_message':
+                                                                  "Suggestion couldn't be submitted: " + str(e)})
+        return HttpResponseRedirect(reverse('polls:suggestions'))
+    else:
+        return render(request, 'polls/suggestions.html')
+
+
+def suggestion_list(request):
+    return render(request, 'polls/suggestions_list.html')
