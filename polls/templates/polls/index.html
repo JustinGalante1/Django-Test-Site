@@ -10,3 +10,5 @@
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+<li><a href="{% url 'polls:suggestions' %}">Submit a suggestion! </a><br></li>
+<li><a href="{% url 'polls:suggestions_list' %}">See all suggestions </a></li>

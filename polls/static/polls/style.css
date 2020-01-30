@@ -2,6 +2,10 @@ li a {
     color: green;
 }
 
+href a {
+    color: green;
+}
+
 body {
     background: white url("images/background.gif") no-repeat;
 }
