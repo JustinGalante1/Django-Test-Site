@@ -11,14 +11,16 @@
     <p class = "lead" align = "center">Maybe the real treasure was the friends we made along the way</p>
     <hr class="my-4">
     <nav class="nav">
-    <a class="nav-link" href="{% url 'polls:suggestions' %}">Submit a suggestion!</a>
-    <a class="nav-link" href="{% url 'polls:suggestions_list' %}">See others' suggestions</a>
+        <a class="nav-link" href="{% url 'polls:index' %}">Polls</a>
+        <a class="nav-link" href="{% url 'polls:suggestions' %}">Submit a suggestion!</a>
+        <a class="nav-link" href="{% url 'polls:suggestions_list' %}">See others' suggestions</a>
     </nav>
 </div>
-<div class = "tabbed">
+<div>
     {% block content %}
     {% endblock %}
 </div>
+<br>
 
 <div class = "page-footer">
     <p align = "center">Author: Justin Nguyen-Galante</p>
