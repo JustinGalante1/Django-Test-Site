@@ -1,6 +1,12 @@
-{% extends 'polls/base.html' %}xx       
+{% extends 'polls/base.html' %}
 {% block content %}
+<style>
+.tabbed {
+    padding-left: 40px;
+}
+</style>
 <body>
+<div class = "tabbed">
     <form action="{% url 'polls:vote' question.id %}" method="post">
     <form>
         <div class = "form-group">
@@ -13,10 +19,11 @@
                 <label for="choice{{ forloop.counter }}" >{{ choice.choice_text }}</label><br>
                 {% endfor %}
             </div>
-            <input type="submit" value="Vote">
+            <input type="submit" value="Vote" class="btn btn-primary">
         </div>
     </form>
     </form>
+</div>
 </body>
 
 {% endblock %}

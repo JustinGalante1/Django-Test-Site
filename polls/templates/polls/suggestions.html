@@ -1,16 +1,35 @@
-{% load bootstrap4 %}
-<h1>Suggestions</h1>
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<br>
-<form action = "{% url 'polls:suggestions' %}" method = "post">
-{% csrf_token %}
-    Title: <input type="text" name="title">
-    <br>
-    Body: <br>
-    <textarea rows="8" name="body" cols="80"></textarea>
-    <br>
-    <button type="submit" value="Submit">Submit</button>
-</form>
-
-<li><a href="{% url 'polls:index' %}">Go back to the index </a><br></li>
-<li><a href="{% url 'polls:suggestions_list' %}">See all suggestions </a></li>
+{% extends 'polls/base.html' %}
+{% block content %}
+<style>
+    .col-centered{
+    margin: 0 auto;
+    float: none;
+    }
+}
+</style>
+<body>
+    <div>
+        <h1 align = "center">Suggestions</h1>
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}<br>
+        <form action = "{% url 'polls:suggestions' %}" method = "post">
+        {% csrf_token %}
+            <div class="col-2 col-centered">
+                <div class="form-group">
+                    <div align = "center"><font size="+1"><label>Title</label></font></div>
+                    <input class="form-control col-centered" type="text" name = "title" required pattern = "[a-zA-Z]+.*">
+                </div>
+            </div>
+            <div class = "form-row">
+                <div class = "col-5 col-centered">
+                    <div align = "center"><font size="+1"><label>Body:</label></font></div>
+                    <textarea class = "form-control" rows="8" name="body" cols="80" required pattern = "[a-zA-Z]+.*"></textarea>
+                </div>
+            </div>
+            <br>
+            <div align = "center">
+                <input type="submit" value="Submit" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}

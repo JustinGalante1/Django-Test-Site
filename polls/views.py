@@ -88,4 +88,4 @@ def suggestions(request):
 
 def suggestions_list(request):
     suggestion_list_context = Suggestion.objects.all()
-    return render(request, 'polls/suggestions_list.html', {'suggestion_list': suggestion_list_context, })
+    return render(request, 'polls/suggestions_list.html', {'suggestion_list': suggestion_list_context,})
