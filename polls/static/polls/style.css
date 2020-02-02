@@ -1,11 +1,8 @@
-li a {
-    color: green;
+ a {
+    color: teal;
 }
 
-href a {
-    color: green;
+p {
+  padding-left: 0px;
 }
 
-body {
-    background: white url("images/background.gif") no-repeat;
-}
